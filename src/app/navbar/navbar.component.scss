@@ -4,6 +4,8 @@ $secondary-grey: #F6F6F6;
 $primary-green: #179C8C;
 $primary-green-20: #179C8C33;
 
+$reducer: 0.8;
+
 .navbar {
     height: 100%;
 }
@@ -15,7 +17,7 @@ $primary-green-20: #179C8C33;
 
 .navbar__title {
     color: $grey-100;
-    font-size: 36px;
+    font-size: 36px * $reducer;
     font-weight: bold;
     margin-bottom: 0.8em;
 }
@@ -24,7 +26,7 @@ $primary-green-20: #179C8C33;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 0.15fr 1fr;
-    margin: 2em 0em 2em 0em;
+    margin: 2em * $reducer 0em * $reducer 2em * $reducer 0em * $reducer;
 }
 
 .navbar__item:hover {
@@ -42,15 +44,15 @@ $primary-green-20: #179C8C33;
     // align-items: center;
     
     i {
-        font-size: 26px;
+        font-size: 26px * $reducer;
     }
 }
 
 .navbar__item__label {
-    font-size: 26px;
+    font-size: 26px * $reducer;
     font-weight: 600; 
-    margin-left: 0.25em;   
-    padding: 0.2em 0.2em 0.2em 0.7em;
+    margin-left: 0.25em *$reducer;   
+    padding: 0.2em * $reducer 0.2em * $reducer 0.2em * $reducer 0.7em * $reducer;
 }
 
 .route-active {

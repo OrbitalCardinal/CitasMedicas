@@ -1,0 +1,41 @@
+@media (max-width: 1366px) {
+  $reducer: 0.8;
+  .pacients-table {
+    height: 650px * $reducer;
+    overflow-y: scroll !important;
+
+    table {
+      font-family: "Assistant", sans-serif;
+      width: 100%;
+
+      ::ng-deep thead {
+        background-color: #f6f6f6;
+      }
+
+      ::ng-deep .mat-row:nth-child(even) {
+        background-color: #179c8c19;
+      }
+
+      ::ng-deep .mat-cell {
+        border-bottom-style: none;
+        text-align: center;
+        color: #767676;
+        font-weight: 600;
+        font-size: 16px * $reducer;
+      }
+
+      ::ng-deep .mat-header-cell {
+        border-bottom-style: none;
+        text-align: center;
+        color: #767676;
+        font-weight: 600;
+        font-size: 16px * $reducer;
+      }
+
+      i {
+        font-size: 22px * $reducer;
+        color: #179c8c;
+      }
+    }
+  }
+}
