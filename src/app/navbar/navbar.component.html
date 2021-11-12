@@ -1,0 +1,26 @@
+<div class="navbar">
+    <div class="navbar__padding">
+        <div class="navbar__title">Sytmed</div>
+        <div class="navbar__links">
+            <div routerLink="pacients" class="navbar__item">
+                <div class="navbar__item__icon">
+                    <i class="fas fa-hospital-user"></i>
+                </div>
+                <div class="navbar__item__label" [routerLinkActive]="['route-active']">Pacientes</div>
+            </div>
+            <div routerLink="doctors" class="navbar__item">
+                <div class="navbar__item__icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <div class="navbar__item__label" [routerLinkActive]="['route-active']">Doctores</div>
+            </div>
+            <div routerLink="appointments" class="navbar__item">
+                <div class="navbar__item__icon">
+                    <i class="fas fa-notes-medical"></i>
+                </div>
+                <div class="navbar__item__label" [routerLinkActive]="['route-active']">Citas</div>
+            </div>
+        </div>
+    </div>
+</div>
+

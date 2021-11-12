@@ -1,1 +1,110 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "~@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+// $CitasMedicas-primary: mat.define-palette(mat.$indigo-palette);
+// $CitasMedicas-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$green-palette: (
+  50:#179C8C,
+  100:#179C8C,
+  200: #179C8C,
+  300:#179C8C,
+  400: #179C8C,
+  500: #179C8C,
+  600: #179C8C,
+  700: #179C8C,
+  800: #179C8C,
+  900: #179C8C,
+  contrast: (
+    50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+  )
+);
+
+$grey-palette: (
+  50:#767676,
+  100:#767676,
+  200: #767676,
+  300:#767676,
+  400: #767676,
+  500: #767676,
+  600: #767676,
+  700: #767676,
+  800: #767676,
+  900: #767676,
+  contrast: (
+    50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+  )
+);
+
+$primary: mat.define-palette($green-palette);
+$accent: mat.define-palette($grey-palette);
+
+// The warn palette is optional (defaults to red).
+$CitasMedicas-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$CitasMedicas-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $CitasMedicas-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($CitasMedicas-theme);
+
 /* You can add global styles to this file, and also import other style files */
+
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: 'Assistant', sans-serif;
+  // font-family: 'Times New Roman', Times, serif !important;
+}
+
+// MatFormField no label input centering
+.mat-form-field-infix {
+  border-top: 0 !important;
+}
+
+.mat-form-field-suffix {
+  top: 0.4em !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-wrapper {
+  margin: 0 !important;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: #7676760C;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #7676767F;
+}

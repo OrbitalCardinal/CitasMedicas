@@ -1,0 +1,53 @@
+$primaryGrey: #767676;
+
+@media (max-width: 1366px) {
+    $reducer: 0.8;
+    h1 {
+        margin: 0;
+        font-size: 48px * $reducer;
+        font-weight: 400;
+    }
+    
+    h2 {
+        margin: 0;
+        font-size: 36px *$reducer;
+        font-weight: 400;
+        color: $primaryGrey;
+    }
+    
+    p {
+        margin: 0;
+        font-size: 24px * $reducer;
+        color: $primaryGrey;
+    }
+    
+    .login-form {
+        height: 100%;
+        // padding: 5em;
+        // margin-top: 10%;
+        // margin-bottom: 10%;
+        // margin-right: 8%;
+        // margin-left: 8%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        mat-form-field {
+            width: 100%;
+            font-size: 24px *$reducer;
+        }
+    }
+    .inputs {
+        p {
+            color: black;
+            font-size: 30px *$reducer;
+            margin-bottom: 0.5em;
+        }
+    }
+    
+    #submitButton {
+        color: white;
+        font-size: 30px * $reducer;
+        padding: 0.5em;
+    }
+}
+

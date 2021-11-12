@@ -1,0 +1,33 @@
+<div class="main-container">
+    <div class="left-container">
+        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div>
+                <h1 class="title">Bienvenido a Sytmed</h1>
+                <h2 class="subtitle">Inicie sesión para comenzar</h2>
+            </div>
+
+            <div class="inputs">
+                <div>
+                    <p>Id de empleado</p>
+                    <mat-form-field appearance="outline" floatLabel="never">
+                        <input type="text" matInput formControlName="employeeIdFormControl" placeholder="ej. 12345"
+                            pattern="^[0-9]+$">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <p>Contraseña</p>
+                    <mat-form-field id="password-input" appearance="outline" floatLabel="never">
+                        <input matInput formControlName="passwordFormControl" [type]="hide ? 'password' : 'text'">
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+                            <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+            </div>
+            <p id="note">Si olvidaste tu contraseña contacta al departamento de bases de datos para que la reestablezcan</p>
+            <button id="submitButton" type="submit" color="primary" [disabled]="!loginForm.valid" mat-raised-button>Iniciar sesión</button>
+        </form>
+
+    </div>
+    <div class="right-container"></div>
+</div>
