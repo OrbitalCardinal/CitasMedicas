@@ -1,0 +1,27 @@
+.main-container {
+    background-color: #F6F6F6;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.title {
+    font-weight: 400;
+    color: #767676;
+    font-size: 46px;
+}
+
+.sub{
+    color: #767676;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.sub:hover {
+    cursor: pointer;
+    color: #179C8C;
+}

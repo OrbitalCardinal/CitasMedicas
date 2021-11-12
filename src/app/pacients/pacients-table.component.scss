@@ -1,0 +1,40 @@
+$reducer: 1;
+.pacients-table {
+    height: 650px * $reducer;
+    overflow-y: scroll !important;
+
+    table {
+        font-family: 'Assistant', sans-serif;
+        width: 100%;
+
+        ::ng-deep thead {
+            background-color: #F6F6F6;
+        }
+
+        ::ng-deep .mat-row:nth-child(even) {
+            background-color: #179C8C19;
+        }
+
+        ::ng-deep .mat-cell {
+            border-bottom-style: none;
+            text-align: center;
+            color: #767676;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        ::ng-deep .mat-header-cell {
+            border-bottom-style: none;
+            text-align: center;
+            color: #767676;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        i {
+            font-size: 22px;
+            color: #179C8C;
+        }
+        
+    }
+}

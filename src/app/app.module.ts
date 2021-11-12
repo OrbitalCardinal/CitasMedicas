@@ -13,6 +13,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 // Component imports
 import { LoginComponent } from './login/login.component';
@@ -21,15 +23,20 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { PacientsComponent } from './pacients/pacients.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
+import { Page404Component } from './page404/page404.component';
 
 // Routes declaration
 const routes: Routes = [
   { path: "", component: LoginComponent },
-  { path: "main", component: MainComponent, children: [
-    {path: "pacients", component: PacientsComponent},
-    {path: "doctors", component: DoctorsComponent},
-    {path: "appointments", component: AppointmentsComponent}
-  ]}
+  {
+    path: "main", component: MainComponent, children: [
+      { path: "", redirectTo: "pacients", pathMatch: "full" },
+      { path: "pacients", component: PacientsComponent },
+      { path: "doctors", component: DoctorsComponent },
+      { path: "appointments", component: AppointmentsComponent }
+    ]
+  },
+  { path: "**", component: Page404Component }
 ];
 
 @NgModule({
@@ -40,7 +47,8 @@ const routes: Routes = [
     NavbarComponent,
     PacientsComponent,
     DoctorsComponent,
-    AppointmentsComponent
+    AppointmentsComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,
@@ -50,7 +58,9 @@ const routes: Routes = [
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [],
   exports: [

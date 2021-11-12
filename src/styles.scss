@@ -89,12 +89,15 @@ body {
 }
 
 // MatFormField no label input centering
-.mat-form-field-infix {
-  border-top: 0 !important;
+.mat-form-field-appearance-outline .mat-form-field-infix {
+  border-top: 0;
+}
+.mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: 0.4em !important;
 }
 
-.mat-form-field-suffix {
-  top: 0.4em !important;
+.mat-form-field-appearance-outline .mat-form-field-prefix {
+  top: -0.1em !important;
 }
 
 .mat-form-field-appearance-outline .mat-form-field-wrapper {
@@ -102,9 +105,19 @@ body {
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline {
-  background-color: #7676760C;
+  // background-color: #7676760C;
+  color: #7676767F;
+  margin: 0 !important;
 }
 
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #7676767F;
+.mat-form-field-appearance-outline .mat-form-field-flex {
+  padding: 0 .5em 0 .5em;
+}
+
+.mat-form-field-label-wrapper {
+  top: -0.5em;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0;
 }
