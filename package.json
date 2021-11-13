@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/OrbitalCardinal/CitasMedicas#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sequelize": "^6.9.0",
+    "tedious": "^14.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
