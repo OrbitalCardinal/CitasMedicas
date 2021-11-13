@@ -8,5 +8,6 @@ const pacientsController = require("../controllers/pacients");
 router.get("/pacients", pacientsController.getPacients);
 router.post("/pacients", pacientsController.registerPacient);
 router.put("/pacients", pacientsController.editPacient);
+router.delete("/pacients",pacientsController.deletePacient);
 
 module.exports = router;

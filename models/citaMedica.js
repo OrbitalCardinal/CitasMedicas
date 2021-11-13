@@ -18,10 +18,6 @@ const CitaMedica = sequelize.define(
       type: Sequelize.INTEGER,
       allowNull: false,
     },
-    id_area: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
     id_paciente: {
       type: Sequelize.INTEGER,
       allowNull: false,

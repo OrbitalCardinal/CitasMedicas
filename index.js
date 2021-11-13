@@ -6,8 +6,11 @@ const sequelize = require("./utils/db");
 // Routes imports
 const pacientsRoute = require("./routes/pacients");
 const doctorsRoute = require("./routes/doctors");
-const appointmentsRoute = require("./routes/appointments");
+const citasRoute = require("./routes/citas");
 const areasRoute = require("./routes/areas");
+const diasRoute = require("./routes/dias");
+const horasRoute = require("./routes/horas");
+const empleadosRoute = require("./routes/empleados");
 
 // Init app
 const app = express();
@@ -36,8 +39,11 @@ app.use((req, res, next) => {
 // Routes declaration
 app.use(pacientsRoute);
 app.use(doctorsRoute);
-app.use(appointmentsRoute);
+app.use(citasRoute);
 app.use(areasRoute);
+app.use(diasRoute);
+app.use(horasRoute);
+app.use(empleadosRoute);
 
 
 // Database relationships
