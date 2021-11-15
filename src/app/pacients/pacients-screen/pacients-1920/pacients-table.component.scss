@@ -3,6 +3,7 @@
   .pacients-table {
     height: 650px * $reducer;
     overflow-y: scroll !important;
+    margin-top: 1em * $reducer;
 
     table {
       font-family: "Assistant", sans-serif;
@@ -30,6 +31,7 @@
         color: #767676;
         font-weight: 600;
         font-size: 16px * $reducer;
+        z-index: 0 !important;
       }
 
       i {

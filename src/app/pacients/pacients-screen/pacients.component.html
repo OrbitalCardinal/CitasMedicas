@@ -2,22 +2,22 @@
     <div class="header">
         <div class="header__top">
             <div class="title">Listado de pacientes</div>
-            <button mat-raised-button color="primary">+ Registrar paciente</button>
+            <button mat-raised-button color="primary" (click)="showModal = true">+ Registrar paciente</button>
         </div>
         <div class="header__bottom">
             <div class="search-bar">
                 <mat-form-field appearance="outline" floatLabel="never">
-                    <input matInput placeholder="Buscar paciente por nombre o id...">
+                    <input matInput placeholder="Buscar paciente por nombre" (input)="searchPaciente($event)">
                     <i class="fas fa-search" matPrefix></i>
                 </mat-form-field>
             </div>
             <div class="filters">
 
                 <mat-form-field appearance="outline">
-                    <mat-label>Dirección</mat-label>
+                    <mat-label>Domicilio</mat-label>
                     <i class="fas fa-map-marker-alt" matPrefix></i>
-                    <mat-select>
-                        <mat-option *ngFor="let option of [1,2,3]" [value]="option">
+                    <mat-select (selectionChange)="filterAddress($event)">
+                        <mat-option *ngFor="let option of ['Ascendente \u2191', 'Descendente \u2193']" [value]="option">
                             {{option}}
                         </mat-option>
                     </mat-select>
@@ -26,8 +26,8 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Nombre y apellido</mat-label>
                     <i class="fas fa-id-card" matPrefix></i>
-                    <mat-select>
-                        <mat-option *ngFor="let option of [1,2,3]" [value]="option">
+                    <mat-select (selectionChange)="filterNameLastName($event)">
+                        <mat-option *ngFor="let option of ['Nombre ascendente \u2191', 'Nombre descendente \u2193','Apellido ascendente \u2191', 'Apellido descendente \u2193']" [value]="option">
                             {{option}}
                         </mat-option>
                     </mat-select>
@@ -36,18 +36,18 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Sexo del paciente</mat-label>
                     <i class="fas fa-mars" matPrefix></i>
-                    <mat-select>
-                        <mat-option *ngFor="let option of [1,2,3]" [value]="option">
+                    <mat-select (selectionChange)="filterSex($event)">
+                        <mat-option *ngFor="let option of ['Hombre \u2642', 'Mujer \u2640']" [value]="option">
                             {{option}}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline">
-                    <mat-label>Fecha de registro</mat-label>
+                    <mat-label>Fecha de nacimiento</mat-label>
                     <i class="fas fa-calendar-alt" matPrefix></i>
-                    <mat-select>
-                        <mat-option *ngFor="let option of [1,2,3]" [value]="option">
+                    <mat-select (selectionChange)="filterDate($event)">
+                        <mat-option *ngFor="let option of ['Mas reciente \u2191', 'Mas antiguo \u2193']" [value]="option">
                             {{option}}
                         </mat-option>
                     </mat-select>
@@ -56,7 +56,7 @@
 
         </div>
     </div>
-    <div class="top-table">
+    <!-- <div class="top-table">
         <div class="results-label">Mostrando 1 - 20 de 100 resultados</div>
         <div class="paginator-controller">
             <div class="paginator-controller__button">
@@ -71,13 +71,13 @@
                 <i class="fas fa-angle-right"></i>
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="pacients-table">
-        <table mat-table [dataSource]="dataSource">
+        <table mat-table [dataSource]="pacientesPaginator">
             <!-- ID Column -->
             <ng-container matColumnDef="ID">
               <th mat-header-cell *matHeaderCellDef> <b>ID</b> </th>
-              <td mat-cell *matCellDef="let pacient"> {{pacient.id}} </td>
+              <td mat-cell *matCellDef="let pacient"> {{pacient.id_paciente}} </td>
             </ng-container>
         
             <!-- Nombre Column -->
@@ -101,7 +101,7 @@
             <!-- Domicilio Column -->
             <ng-container matColumnDef="Domicilio">
                 <th mat-header-cell *matHeaderCellDef> Domicilio </th>
-                <td mat-cell *matCellDef="let pacient"> {{pacient.domicilio}} </td>
+                <td mat-cell *matCellDef="let pacient"> {{pacient.domicilio.split(",").join(", ")}} </td>
               </ng-container>
 
             <!-- Telefono 1 Column -->
@@ -125,9 +125,12 @@
             <!-- Acciones column -->
             <ng-container matColumnDef="Acciones">
                 <th mat-header-cell *matHeaderCellDef> Acciones. </th>
-                <td mat-cell *matCellDef="let pacient"> 
-                    <button mat-icon-button>
+                <td mat-cell *matCellDef="let pacient" > 
+                    <button mat-icon-button (click)="showEditModal = true; actualEditPaciente = pacient" style="z-index: 0 !important; padding-right: 0.5em;">
                         <i class="fas fa-edit"></i>
+                    </button>
+                    <button mat-icon-button (click)="showDeleteModal = true; actualDeleteId = pacient.id_paciente" style="z-index: 0 !important; padding-left: 0.5em;" >
+                        <i class="fas fa-trash"></i>
                     </button>
                 </td>
               </ng-container>
@@ -135,6 +138,11 @@
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </table>
-        
     </div>
+    <mat-paginator [pageSizeOptions]="[12]"
+          showFirstLastButtons >
+                </mat-paginator>
+    <pacients-modal *ngIf="showModal" (onClose)="closeModal($event)" [@fadeInOut]></pacients-modal>
+    <pacients-edit-modal *ngIf="showEditModal" [actualEditPaciente]="actualEditPaciente" (onClose)="closeEditModal($event)" [@fadeInOut]></pacients-edit-modal>
+    <pacients-delete-modal *ngIf="showDeleteModal" [id_paciente]="actualDeleteId" (onCancel)="closeDeleteModal($event)" (onDelete)="deletePaciente($event)" [@fadeInOut]></pacients-delete-modal>
 </div>

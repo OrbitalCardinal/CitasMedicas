@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -15,15 +15,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 // Component imports
+// Pacientes
+import { PacientsComponent } from './pacients/pacients-screen/pacients.component';
+import { PacientsModal } from './pacients/pacients-modal/pacients-modal.component';
+import { PacientsDeleteModal } from './pacients/pacients-delete-modal/pacients-delete-modal.component';
+
+
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { PacientsComponent } from './pacients/pacients.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { Page404Component } from './page404/page404.component';
+import { PacientsEditModal } from './pacients/pacients-edit-modal/pacients-edit-modal.component';
 
 // Routes declaration
 const routes: Routes = [
@@ -48,7 +55,10 @@ const routes: Routes = [
     PacientsComponent,
     DoctorsComponent,
     AppointmentsComponent,
-    Page404Component
+    Page404Component,
+    PacientsModal,
+    PacientsDeleteModal,
+    PacientsEditModal
   ],
   imports: [
     BrowserModule,
@@ -60,9 +70,12 @@ const routes: Routes = [
     MatFormFieldModule,
     MatIconModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    HttpClientModule,
+    MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+  ],
   exports: [
     [RouterModule]
   ],

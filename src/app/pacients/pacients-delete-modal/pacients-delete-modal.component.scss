@@ -1,0 +1,67 @@
+.delete-modal-background {
+    transition: 1s ease-in;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #7676763f;
+}
+
+.delete-modal-container {
+    position: relative;
+    background-color: white;
+    padding: 2em;
+    border-radius: 0.5em;
+}
+
+// Header
+
+// header
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5em 0 0.5em 0;
+    border-bottom: 2px solid #7676763f;
+
+    button {
+        i {
+            font-size: 20px;
+        color: #767676;
+        }
+    }
+}
+
+.modal-header__title {
+    font-size: 30px;
+    color: #767676;
+}
+
+.delete-modal-content-area {
+    font-size: 20px;
+    color: #767676;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2em;
+    padding: 1em 0em 1em 0em;
+}
+
+#button-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    button {
+        font-size: 20px;
+        padding: 0.2em 1.5em;
+    }
+}
+
+.delete-modal-button {
+    margin-left: 1.5em;
+}
