@@ -14,6 +14,27 @@ export class PacienteService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  getPacienteById(id: Number) {
+    return this.http.get<{message: String, data: Paciente}>(BACKEND_URL + "?id=" + id).pipe(map((pacienteData) => {
+      return {
+        id_paciente: pacienteData.data.id_paciente,
+        nombres: pacienteData.data.nombres,
+        apellidos: pacienteData.data.apellidos,
+        fecha_nac: pacienteData.data.fecha_nac,
+        sexo: pacienteData.data.sexo,
+        domicilio: pacienteData.data.domicilio,
+        tel_principal: pacienteData.data.tel_principal,
+        tel_secundario: pacienteData.data.tel_secundario,
+        correo: pacienteData.data.correo,
+        fecha_reg: pacienteData.data.fecha_reg
+      }
+    }));
+  }
+  
+  getPacientesObservable() {
+    return this.http.get<{message: String, data: Paciente[]}>(BACKEND_URL);
+  }
+
   getPacientes() {
     this.http
       .get<{ message: String; data: Paciente[] }>(BACKEND_URL)

@@ -17,6 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material/core';
 
 // Component imports
 // Pacientes
@@ -29,13 +31,15 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DoctorsComponent } from './doctors/doctors-screen/doctors.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
 import { Page404Component } from './page404/page404.component';
 import { PacientsEditModal } from './pacients/pacients-edit-modal/pacients-edit-modal.component';
 import { DoctorsDeleteModal } from './doctors/doctors-delete-modal/doctors-delete-modal.component';
 import { DoctorsEditModal } from './doctors/doctors-edit-modal/doctors-edit-modal.component';
 import { DoctorsModal } from './doctors/doctors-modal/doctors-modal.component';
 import { AreaModalComponent } from './area/area-modal/area-modal.component';
+import { CitasComponent } from './citas/citas-screen/citas.component';
+import { CitasDeleteModal } from './citas/citas-delete-modal/citas-delete-modal.component';
+import { CitasModal } from './citas/citas-modal/citas-modal.component';
 
 // Routes declaration
 const routes: Routes = [
@@ -45,7 +49,7 @@ const routes: Routes = [
       { path: "", redirectTo: "pacients", pathMatch: "full" },
       { path: "pacients", component: PacientsComponent },
       { path: "doctors", component: DoctorsComponent },
-      { path: "appointments", component: AppointmentsComponent }
+      { path: "appointments", component: CitasComponent }
     ]
   },
   { path: "**", component: Page404Component }
@@ -59,7 +63,6 @@ const routes: Routes = [
     NavbarComponent,
     PacientsComponent,
     DoctorsComponent,
-    AppointmentsComponent,
     Page404Component,
     PacientsModal,
     PacientsDeleteModal,
@@ -67,7 +70,10 @@ const routes: Routes = [
     DoctorsDeleteModal,
     DoctorsEditModal,
     DoctorsModal,
-    AreaModalComponent
+    AreaModalComponent,
+    CitasComponent,
+    CitasDeleteModal,
+    CitasModal
   ],
   imports: [
     BrowserModule,
@@ -82,7 +88,9 @@ const routes: Routes = [
     MatTableModule,
     HttpClientModule,
     MatPaginatorModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
   ],

@@ -11,6 +11,16 @@ const BACKEND_URL = 'http://localhost:3000/horas';
 export class HoraService {
   constructor(private http: HttpClient, private router: Router) {}
 
+  getHoraById(id: Number) {
+    return this.http.get<{message: String, data: Hora}>(BACKEND_URL + "?id=" + id).pipe(map((horaData) => {
+      return {
+        id_hora: horaData.data.id_hora,
+        hora_inicial: horaData.data.hora_inicial,
+        hora_final: horaData.data.hora_final
+      }
+    }));
+  }
+
   getHoras() {
     return this.http
       .get<{ message: String; data: Hora[] }>(BACKEND_URL)

@@ -1,4 +1,4 @@
-import { Cita } from './citas.model';
+import { Cita } from './cita.model';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -8,13 +8,13 @@ import { map } from 'rxjs/operators';
 const BACKEND_URL = 'http://localhost:3000/citas';
 
 @Injectable({ providedIn: 'root' })
-export class CitasService {
+export class CitaService {
   private citas: Cita[] = [];
   private citasObservable = new Subject<{ citas: Cita[] }>();
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  getCita() {
+  getCitas() {
     this.http
       .get<{ message: String; data: Cita[] }>(BACKEND_URL)
       .pipe(

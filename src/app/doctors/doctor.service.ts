@@ -14,8 +14,30 @@ export class DoctorService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
+  getDoctorById(id: Number) {
+    return this.http.get<{message: String, data: Doctor}>(BACKEND_URL + "?idDoctor=" + id).pipe(map((doctorData) => {
+      return {
+        id_doctor: doctorData.data.id_doctor,
+        nombre: doctorData.data.nombre,
+        cedula: doctorData.data.cedula,
+        telefono: doctorData.data.telefono,
+        correo: doctorData.data.correo,
+        fecha_reg: doctorData.data.fecha_reg,
+        id_area: doctorData.data.id_area
+      }
+    }));
+  }
+
   getHorarioDoctor(id_doctor: any) {
-    return this.http.get<{message: String, data: Object}>(BACKEND_URL + "?horario=1&idDoctor=" + id_doctor).toPromise()
+    return this.http.get<{message: String, data: Object}>(BACKEND_URL + "?horario=1&idDoctor=" + id_doctor).toPromise();
+  }
+
+  getHorarioDoctorObservable(id_doctor: any) {
+    return this.http.get<{message: String, data: Object}>(BACKEND_URL + "?horario=1&idDoctor=" + id_doctor);
+  }
+
+  getDoctoresObservable() {
+    return this.http.get<{message: String, data: Doctor[]}>(BACKEND_URL);
   }
 
   getDoctores() {

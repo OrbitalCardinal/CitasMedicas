@@ -1,0 +1,109 @@
+<div class="modal-background">
+  <form class="modal-container" [formGroup]="newCitaForm" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+      <div class="modal-header__title">Registar cita</div>
+        <button type="button" mat-icon-button (click)="setClose()">
+            <i class="fas fa-window-close" ></i>
+        </button>
+    </div>
+    <div class="modal-content">
+      <div class="modal-content__area-title">Información de la cita</div>
+      <div class="modal-content__area">
+        <div class="cita-grid">
+          <!-- Area input -->
+          <div class="modal-content__input">
+            <div class="modal-content__input__label">Área de especialización</div>
+            <div class="modal-content__input__textfield">
+              <mat-form-field appearance="outline">
+                <select matNativeControl formControlName="area" (change)="unlockDoctor()">
+                  <option *ngFor="let option of areas" [value]="option">
+                    {{ option }}
+                  </option>
+                </select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- Empty -->
+          <div class="modal-content__input">
+            <div class="modal-content__input__textfield">
+            </div>
+          </div>
+
+          <!-- Doctor input -->
+          <div class="modal-content__input">
+            <div class="modal-content__input__label">Nombre del doctor</div>
+            <div class="modal-content__input__textfield">
+              <mat-form-field appearance="outline">
+                <select matNativeControl formControlName="nombre_doctor" (change)="unlockPacient()">
+                  <option *ngFor="let option of doctores" [value]="option">
+                    {{ option }}
+                  </option>
+                </select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <!-- Paciente input -->
+          <div class="modal-content__input">
+            <div class="modal-content__input__label">Nombre del paciente</div>
+            <div class="modal-content__input__textfield">
+              <mat-form-field appearance="outline">
+                <select matNativeControl formControlName="nombre_paciente" (change)="unlockFecha()">
+                  <option *ngFor="let option of pacientes" [value]="option">
+                    {{ option }}
+                  </option>
+                </select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Información Horario -->
+      <div class="modal-content__area-title">Horario de la cita</div>
+      <div class="modal-content__area">
+        <div class="horario-grid">
+          <!-- Fecha -->
+          <div class="modal-content__input">
+            <div class="modal-content__input__label">Fecha</div>
+            <div class="modal-content__input__textfield">
+              <mat-form-field appearance="outline">
+                <input matInput [matDatepicker]="picker" [matDatepickerFilter]="myFilter" [min]="minDate" [max]="maxDate" formControlName="fecha" (dateChange)="unlockHora()">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+              
+            </div>
+          </div>
+
+          <!-- Hora -->
+          <div class="modal-content__input">
+            <div class="modal-content__input__label">Hora</div>
+            <div class="modal-content__input__textfield">
+              <mat-form-field appearance="outline">
+                <select matNativeControl formControlName="hora" (change)="asignarHoraId($event)">
+                  <option *ngFor="let option of horas" [value]="option">
+                    {{ option }}
+                  </option>
+                </select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-content__area" id="button-area">
+        <!-- Registrar button -->
+        <button
+          type="submit"
+          color="primary"
+          mat-raised-button
+          [disabled]="!newCitaForm.valid"
+        >
+          + Registrar cita
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

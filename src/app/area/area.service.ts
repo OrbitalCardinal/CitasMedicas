@@ -24,6 +24,10 @@ export class AreaService {
     }));
   }
 
+  getAreasObservable() {
+    return this.http.get<{message: String, data: Area[]}>(BACKEND_URL);
+  }
+
   getAreas() {
     this.http
       .get<{ message: String; data: Area[] }>(BACKEND_URL)

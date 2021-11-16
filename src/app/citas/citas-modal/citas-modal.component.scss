@@ -80,7 +80,19 @@
 }
 
 // Custom input widths
-.name-grid {
+.cita-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    gap: 2em;
+    ::ng-deep mat-form-field {
+        width: 100%;
+        background-color: #7676760C;
+    }
+}
+
+.horario-grid {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
@@ -92,74 +104,6 @@
     }
 }
 
-.birth-grid {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 100%;
-    gap: 2em;
-
-    ::ng-deep mat-form-field {
-        width: 100%;
-        background-color: #7676760C;
-    }
-}
-
-.sexo-grid {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 100%;
-    gap: 2em;
-
-    ::ng-deep mat-form-field {
-        width: 100%;
-        background-color: #7676760C;
-    }
-}
-.address-grid {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 0.5fr 0.5fr 1fr;
-    width: 100%;
-    gap: 2em;
-
-    ::ng-deep mat-form-field {
-        width: 100%;
-        background-color: #7676760C;
-    }
-}
-
-.address2-grid {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 100%;
-    gap: 2em;
-
-    ::ng-deep mat-form-field {
-        width: 100%;
-        background-color: #7676760C;
-    }
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr;
-    width: 100%;
-    gap: 2em;
-
-    ::ng-deep mat-form-field {
-        width: 100%;
-        background-color: #7676760C;
-    }
-}
-
 input {
-    font-size: 20px;
-}
-
-select {
     font-size: 20px;
 }
