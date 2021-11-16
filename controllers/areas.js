@@ -3,7 +3,9 @@ const Area = require("../models/area");
 
 // Get areas
 exports.getAreas = (req, res, next) => {
-  Area.findAll()
+  const idParam = req.query.id;
+  if(idParam == undefined) {
+    Area.findAll()
     .then((areas) => {
       res.status(200).json({
         message: "Areas recuperadas correctamente",
@@ -16,6 +18,20 @@ exports.getAreas = (req, res, next) => {
         error: error,
       });
     });
+  } else {
+    Area.findByPk(idParam).then((area) => {
+      res.status(200).json({
+        message: "Area recuperada correctamente",
+        data: area
+      });
+    }).catch(error => {
+      res.status(500).json({
+        message: "No se pudo recuperar paciente",
+        error: error
+      });
+    });;
+  }
+
 };
 
 // Register area

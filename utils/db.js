@@ -11,7 +11,8 @@ const sequelize = new Sequelize(db_name, user, password, {
         instanceName:  "ORBITALPC",
         encrypt: true,
         trustServerCertificate: true
-    }
+    },
+    logging: false
 });
 
 module.exports = sequelize;

@@ -1,20 +1,50 @@
 // Model import
 const Doctor = require("../models/doctor");
 const DoctorHoraDia = require("../models/doctorHoraDia");
+const db = require("../utils/db");
 
 // Get doctors
 exports.getDoctors = (req, res, next) => {
-    Doctor.findAll().then(doctores => {
-        res.status(200).json({
-            message: "Doctores recuperado correctamente",
-            data: doctores
+    const horarioParam = req.query.horario;
+    const idDoctor = req.query.idDoctor;
+    if(horarioParam == undefined && idDoctor == undefined) {
+        Doctor.findAll().then(doctores => {
+            res.status(200).json({
+                message: "Doctores recuperado correctamente",
+                data: doctores
+            });
+        }).catch(error => {
+            res.status(500).json({
+                message: "No se pudo recuperar Doctores",
+                error: error
+            });
+        })
+    } else if(horarioParam == undefined && idDoctor != undefined) {
+        Doctor.findByPk(idDoctor).then((doctor) => {
+            res.status(200).json({
+                message: "Doctor recuperado correctamente",
+                data: doctor
+            });
+        }).catch(error => {
+            res.status(500).json({
+                message: "No se pudo recuperar el Doctor",
+                error: error
+            });
         });
-    }).catch(error => {
-        res.status(500).json({
-            message: "No se pudo recuperar Doctores",
-            error: error
+    } else  {
+        db.query("SELECT * FROM citas.doctor_hora_dia WHERE id_doctor=" + idDoctor).then((response) => {
+            res.status(200).json({
+                message: "El horario se recuperó correctamente",
+                data: response
+            });
+        }).catch(error => {
+            res.status(500).json({
+                message: "No se pudo recuperar el horario",
+                error: error
+            });
         });
-    })
+    }
+
 };
 
 // Register doctor

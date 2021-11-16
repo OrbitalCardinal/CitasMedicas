@@ -3,17 +3,32 @@ const Paciente = require("../models/paciente");
 
 // Get pacients
 exports.getPacients = (req, res, next) => {
-    Paciente.findAll().then(pacientes => {
-        res.status(200).json({
-            message: "Pacientes recuperados correctamente",
-            data: pacientes
+    const idPaciente = req.query.id;
+    if(idPaciente == undefined) {
+        Paciente.findAll().then(pacientes => {
+            res.status(200).json({
+                message: "Pacientes recuperados correctamente",
+                data: pacientes
+            });
+        }).catch(error => {
+            res.status(500).json({
+                message: "No se pudo recuperar pacientes",
+                error: error
+            });
+        })
+    } else {
+        Paciente.findByPk(idPaciente).then((paciente) => {
+            res.status(200).json({
+                message: "Paciente recuperado correctamente",
+                data: paciente
+            });
+        }).catch(error => {
+            res.status(500).json({
+                message: "No se pudo recuperar paciente",
+                error: error
+            });
         });
-    }).catch(error => {
-        res.status(500).json({
-            message: "No se pudo recuperar pacientes",
-            error: error
-        });
-    })
+    }
 };
 
 // New pacient

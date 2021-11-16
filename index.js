@@ -72,4 +72,6 @@ sequelize.createSchema('citas').then(() => {
 }).catch(err => console.log(err));
 
 // Open port
-app.listen(3000);
+const server = app.listen(3000);
+
+module.exports ={app, server};
