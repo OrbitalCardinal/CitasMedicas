@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTabsModule } from '@angular/material/tabs';
 
 // Component imports
 // Pacientes
@@ -27,10 +28,14 @@ import { PacientsDeleteModal } from './pacients/pacients-delete-modal/pacients-d
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { DoctorsComponent } from './doctors/doctors.component';
+import { DoctorsComponent } from './doctors/doctors-screen/doctors.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { Page404Component } from './page404/page404.component';
 import { PacientsEditModal } from './pacients/pacients-edit-modal/pacients-edit-modal.component';
+import { DoctorsDeleteModal } from './doctors/doctors-delete-modal/doctors-delete-modal.component';
+import { DoctorsEditModal } from './doctors/doctors-edit-modal/doctors-edit-modal.component';
+import { DoctorsModal } from './doctors/doctors-modal/doctors-modal.component';
+import { AreaModalComponent } from './area/area-modal/area-modal.component';
 
 // Routes declaration
 const routes: Routes = [
@@ -58,7 +63,11 @@ const routes: Routes = [
     Page404Component,
     PacientsModal,
     PacientsDeleteModal,
-    PacientsEditModal
+    PacientsEditModal,
+    DoctorsDeleteModal,
+    DoctorsEditModal,
+    DoctorsModal,
+    AreaModalComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +81,8 @@ const routes: Routes = [
     MatSelectModule,
     MatTableModule,
     HttpClientModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatTabsModule
   ],
   providers: [
   ],

@@ -1,0 +1,120 @@
+<div class="main-area">
+    <div class="header">
+        <div class="header__top">
+            <div class="title">Lista de doctores</div>
+            <div>
+                <button mat-raised-button color="primary" (click)="showAreaModal = true">Áreas de especialización</button>
+                <button mat-raised-button color="primary" (click)="showModal = true">+ Registrar doctor</button>
+            </div>
+        </div>
+        <div class="header__bottom">
+            <div class="search-bar">
+                <mat-form-field appearance="outline" floatLabel="never">
+                    <input matInput placeholder="Buscar paciente por nombre" (input)="searchDoctor($event)">
+                    <i class="fas fa-search" matPrefix></i>
+                </mat-form-field>
+            </div>
+            <div class="filters">
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <i class="fas fa-id-card" matPrefix></i>
+                    <mat-select (selectionChange)="filterName($event)">
+                        <mat-option *ngFor="let option of ['Nombre ascendente \u2191', 'Nombre descendente \u2193']" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Fecha de registro</mat-label>
+                    <i class="fas fa-calendar-alt" matPrefix></i>
+                    <mat-select (selectionChange)="filterDate($event)">
+                        <mat-option *ngFor="let option of ['Mas reciente \u2191', 'Mas antiguo \u2193']" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+        </div>
+    </div>
+    <!-- <div class="top-table">
+        <div class="results-label">Mostrando 1 - 20 de 100 resultados</div>
+        <div class="paginator-controller">
+            <div class="paginator-controller__button">
+                <i class="fas fa-angle-left"></i>
+            </div>
+            <div class="paginator-active paginator-controller__item">1</div>
+            <div class="paginator-controller__item">2</div>
+            <div class="paginator-controller__item">3</div>
+            <div class="paginator-controller__item">4</div>
+            <div class="paginator-controller__item">...</div>
+            <div class="paginator-controller__button">
+                <i class="fas fa-angle-right"></i>
+            </div>
+        </div>
+    </div> -->
+    <div class="pacients-table">
+        <table mat-table [dataSource]="doctoresPaginator">
+            <!-- ID Column -->
+            <ng-container matColumnDef="ID">
+              <th mat-header-cell *matHeaderCellDef> <b>ID</b> </th>
+              <td mat-cell *matCellDef="let doctor"> {{doctor.id_doctor}} </td>
+            </ng-container>
+        
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="NombreDoctor">
+              <th mat-header-cell *matHeaderCellDef> Nombre del doctor </th>
+              <td mat-cell *matCellDef="let doctor"> {{doctor.nombre}} </td>
+            </ng-container>
+        
+            <!-- Fecha nac. Column -->
+            <ng-container matColumnDef="Cedula">
+              <th mat-header-cell *matHeaderCellDef> Cedula</th>
+              <td mat-cell *matCellDef="let doctor"> {{doctor.cedula}} </td>
+            </ng-container>
+        
+            <!-- Sexo Column -->
+            <ng-container matColumnDef="Telefono">
+              <th mat-header-cell *matHeaderCellDef> Telefono</th>
+              <td mat-cell *matCellDef="let doctor"> {{doctor.telefono}} </td>
+            </ng-container>
+
+            <!-- Domicilio Column -->
+            <ng-container matColumnDef="Correo">
+                <th mat-header-cell *matHeaderCellDef> Domicilio </th>
+                <td mat-cell *matCellDef="let doctor"> {{doctor.correo}} </td>
+              </ng-container>
+
+            <!-- Telefono 1 Column -->
+            <ng-container matColumnDef="Fecha_reg">
+                <th mat-header-cell *matHeaderCellDef> Teléfono</th>
+                <td mat-cell *matCellDef="let doctor"> {{doctor.telefono}} </td>
+              </ng-container>
+            
+            <!-- Acciones column -->
+            <ng-container matColumnDef="Acciones">
+                <th mat-header-cell *matHeaderCellDef> Acciones. </th>
+                <td mat-cell *matCellDef="let doctor" > 
+                    <button mat-icon-button (click)="showEditModal = true; actualEditDoctor = doctor" style="z-index: 0 !important; padding-right: 0.5em;">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button mat-icon-button (click)="showDeleteModal = true; actualDeleteId = doctor.id_doctor" style="z-index: 0 !important; padding-left: 0.5em;" >
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+              </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+    <mat-paginator [pageSizeOptions]="[12]"
+          showFirstLastButtons >
+                </mat-paginator>
+    <doctors-modal *ngIf="showModal" (onClose)="closeModal($event)" [@fadeInOut]></doctors-modal>
+    <area-modal-component *ngIf="showAreaModal" (onClose)="closeAreaModal($event)" [@fadeInOut]></area-modal-component>
+    <doctors-edit-modal *ngIf="showEditModal" [editDoctor]="actualEditDoctor" (onClose)="closeEditModal($event)" [@fadeInOut]></doctors-edit-modal>
+    <doctors-delete-modal *ngIf="showDeleteModal" [id_doctor]="actualDeleteId" (onCancel)="closeDeleteModal($event)" (onDelete)="deleteDoctor($event)" [@fadeInOut]></doctors-delete-modal>
+</div>

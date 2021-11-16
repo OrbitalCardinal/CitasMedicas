@@ -1,0 +1,109 @@
+<div class="modal-background">
+  <!-- <form class="modal-container" [formGroup]="newPacienteForm" (ngSubmit)="onSubmit()"></form> -->
+  <!-- <form class="modal-container" [formGroup]="newPacienteForm"></form> -->
+  <form class="modal-container" [formGroup]="doctorFormGroup">
+    <div class="modal-header">
+      <button type="button" mat-icon-button (click)="setClose()">
+        <i class="fas fa-window-close"></i>
+      </button>
+    </div>
+    <mat-tab-group>
+      <mat-tab label="Editar doctor">
+        <div class="modal-content">
+          <div class="modal-content__area-title">Información personal</div>
+          <div class="modal-content__area">
+            <div class="name-grid">
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">Nombre(s)</div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="nombres" />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">Apellido(s)</div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="apellidos" />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-content__area-title">Información de contacto</div>
+          <div class="modal-content__area">
+            <div class="contact-grid">
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">
+                  Correo electrónico
+                </div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="correo" />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">Teléfono</div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="telefono" pattern="^[0-9]+$"/>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-content__area-title">
+            Información de profesional
+          </div>
+          <div class="modal-content__area">
+            <div class="professional-grid">
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">
+                  Área de especialización
+                </div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <select matNativeControl formControlName="area">
+                      <option *ngFor="let area of areas" [value]="area.nombre">
+                        {{ area.nombre }}
+                      </option>
+                    </select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">
+                  No. de cedula profesional
+                </div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="cedula" />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="modal-content__area" id="button-area">
+            <button type="button" color="primary" mat-raised-button>
+              Continuar
+            </button>
+          </div> -->
+        </div>
+
+        <div class="modal-content__area" id="button-area">
+          <button (click)="onSubmit()" [disabled]="!doctorFormGroup.valid" type="button" color="primary" mat-raised-button>
+            Editar
+          </button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </form>
+</div>

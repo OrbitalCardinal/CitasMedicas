@@ -1,0 +1,216 @@
+<div class="modal-background">
+  <!-- <form class="modal-container" [formGroup]="newPacienteForm" (ngSubmit)="onSubmit()"></form> -->
+  <!-- <form class="modal-container" [formGroup]="newPacienteForm"></form> -->
+  <form class="modal-container" [formGroup]="doctorFormGroup">
+    <div class="modal-header">
+      <button type="button" mat-icon-button (click)="setClose()">
+        <i class="fas fa-window-close"></i>
+      </button>
+    </div>
+    <mat-tab-group>
+      <mat-tab label="Registrar doctor">
+        <div class="modal-content">
+          <div class="modal-content__area-title">Información personal</div>
+          <div class="modal-content__area">
+            <div class="name-grid">
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">Nombre(s)</div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="nombres" />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">Apellido(s)</div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="apellidos" />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-content__area-title">Información de contacto</div>
+          <div class="modal-content__area">
+            <div class="contact-grid">
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">
+                  Correo electrónico
+                </div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="correo" />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">Teléfono</div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="telefono" pattern="^[0-9]+$"/>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal-content__area-title">
+            Información de profesional
+          </div>
+          <div class="modal-content__area">
+            <div class="professional-grid">
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">
+                  Área de especialización
+                </div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <select matNativeControl formControlName="area">
+                      <option *ngFor="let area of areas">
+                        {{ area.nombre }}
+                      </option>
+                    </select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="modal-content__input">
+                <div class="modal-content__input__label">
+                  No. de cedula profesional
+                </div>
+                <div class="modal-content__input__textfield">
+                  <mat-form-field appearance="outline">
+                    <input matInput type="text" formControlName="cedula" />
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="modal-content__area" id="button-area">
+            <button type="button" color="primary" mat-raised-button>
+              Continuar
+            </button>
+          </div> -->
+        </div>
+      </mat-tab>
+      <mat-tab label="Horario">
+        <div class="modal-content">
+          <div class="modal-content__area-title">
+            Seleccione el conjunto de dias y rango de horas
+          </div>
+          <div class="modal-content__area">
+            <div class="period-area">
+              <div
+                *ngFor="let daySet of daysArraySet; let indexOfElement = index"
+                class="buttons-days-area"
+              >
+                <button
+                  (click)="
+                    changeDayValue(indexOfElement, 'Lunes', daySet['Lunes'])
+                  "
+                  [color]="daySet['Lunes'] == 0 ? 'Null' : 'primary'"
+                  [ngClass]="daySet['Lunes'] == 0 ? '' : 'active'"
+                  type="button"
+                  mat-raised-button
+                >
+                  Lunes
+                </button>
+                <button
+                  (click)="
+                    changeDayValue(indexOfElement, 'Martes', daySet['Martes'])
+                  "
+                  [color]="daySet['Martes'] == 0 ? 'Null' : 'primary'"
+                  [ngClass]="daySet['Martes'] == 0 ? '' : 'active'"
+                  type="button"
+                  mat-raised-button
+                >
+                  Martes
+                </button>
+                <button
+                  (click)="
+                    changeDayValue(
+                      indexOfElement,
+                      'Miercoles',
+                      daySet['Miercoles']
+                    )
+                  "
+                  [color]="daySet['Miercoles'] == 0 ? 'Null' : 'primary'"
+                  [ngClass]="daySet['Miercoles'] == 0 ? '' : 'active'"
+                  type="button"
+                  mat-raised-button
+                >
+                  Miercoles
+                </button>
+                <button
+                  (click)="
+                    changeDayValue(indexOfElement, 'Jueves', daySet['Jueves'])
+                  "
+                  [color]="daySet['Jueves'] == 0 ? 'Null' : 'primary'"
+                  [ngClass]="daySet['Jueves'] == 0 ? '' : 'active'"
+                  type="button"
+                  mat-raised-button
+                >
+                  Jueves
+                </button>
+                <button
+                  (click)="
+                    changeDayValue(indexOfElement, 'Viernes', daySet['Viernes'])
+                  "
+                  [color]="daySet['Viernes'] == 0 ? 'Null' : 'primary'"
+                  [ngClass]="daySet['Viernes'] == 0 ? '' : 'active'"
+                  type="button"
+                  mat-raised-button
+                >
+                  Viernes
+                </button>
+              </div>
+              <div class="name-grid">
+                <div class="modal-content__input">
+                  <div class="modal-content__input__label">Hora inicial</div>
+                  <div class="modal-content__input__textfield">
+                    <mat-form-field appearance="outline">
+                      <select matNativeControl formControlName="hora_inicial">
+                        <option *ngFor="let option of horas">
+                          {{option.hora_inicial}}
+                        </option>
+                      </select>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="modal-content__input">
+                  <div class="modal-content__input__label">Hora final</div>
+                  <div class="modal-content__input__textfield">
+                    <mat-form-field appearance="outline">
+                      <select matNativeControl formControlName="hora_final">
+                        <option *ngFor="let option of horas">
+                          {{option.hora_final}}
+                        </option>
+                      </select>
+                    </mat-form-field>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="modal-content__area" id="button-area">
+            <button (click)="onSubmit()" [disabled]="!doctorFormGroup.valid" type="button" color="primary" mat-raised-button>
+              Registrar
+            </button>
+          </div>
+
+          <!-- <div class="modal-content-area">
+            <div class="addDaySet" (click)="addDaySet()">+ Añadir conjunto de dias</div>
+          </div> -->
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </form>
+</div>

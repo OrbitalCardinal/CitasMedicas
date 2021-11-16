@@ -1,21 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Paciente } from '../paciente.model';
 import { PacienteService } from '../paciente.service';
 
 @Component({
-  selector: 'pacients-edit-modal',
-  templateUrl: './pacients-edit-modal.component.html',
-  styleUrls: ['./pacients-edit-modal.component.scss'],
+  selector: 'pacients-modal',
+  templateUrl: './pacients-modal.component.html',
+  styleUrls: ['./pacients-modal.component.scss'],
 })
-export class PacientsEditModal implements OnInit {
-  constructor(
-    private pacienteService: PacienteService,
-    private router: Router
-  ) {}
-
-  @Input() actualEditPaciente!: Paciente;
+export class PacientsModal {
+  constructor(private pacienteService: PacienteService, private router: Router) {}
   @Output() onClose = new EventEmitter<boolean>();
   meses = [
     'Enero',
@@ -72,9 +67,7 @@ export class PacientsEditModal implements OnInit {
   filteredDias = this.dias;
 
   newPacienteForm = new FormGroup({
-    nombres: new FormControl('', [
-      Validators.required,
-    ]),
+    nombres: new FormControl('', [Validators.required]),
     apellidos: new FormControl('', [Validators.required]),
     dia_nac: new FormControl('', [Validators.required]),
     mes_nac: new FormControl('', [Validators.required]),
@@ -96,38 +89,6 @@ export class PacientsEditModal implements OnInit {
     tel_sec: new FormControl('', [Validators.required]),
   });
 
-  ngOnInit() {
-    const fecha_nac = new Date(this.actualEditPaciente.fecha_nac)
-    this.newPacienteForm.controls["nombres"].setValue(this.actualEditPaciente.nombres);
-    this.newPacienteForm.controls["apellidos"].setValue(this.actualEditPaciente.apellidos);
-    this.newPacienteForm.controls["dia_nac"].setValue(fecha_nac.getDate() + 2);
-    this.newPacienteForm.controls["mes_nac"].setValue(this.meses[fecha_nac.getMonth()]);
-    this.newPacienteForm.controls["year_nac"].setValue(fecha_nac.getFullYear());
-    this.newPacienteForm.controls["sexo"].setValue(this.actualEditPaciente.sexo);
-    // 
-    const splitAddress = this.actualEditPaciente.domicilio.split(",")
-    const calle = splitAddress[0];
-    const num_ext = splitAddress[1];
-    const num_int = splitAddress[2] == undefined ? "": splitAddress[2];
-    const colonia = splitAddress[3];
-    const municipio = splitAddress[4];
-    const estado = splitAddress[5];
-    const cp = splitAddress[6];
-    //
-    this.newPacienteForm.controls["calle"].setValue(calle);
-    this.newPacienteForm.controls["num_ext"].setValue(num_ext);
-    this.newPacienteForm.controls["num_int"].setValue(num_int);
-    this.newPacienteForm.controls["colonia"].setValue(colonia);
-    this.newPacienteForm.controls["municipio"].setValue(municipio);
-    this.newPacienteForm.controls["estado"].setValue(estado);
-    this.newPacienteForm.controls["codigoPostal"].setValue(cp);
-    this.newPacienteForm.controls["correo"].setValue(this.actualEditPaciente.correo);
-    this.newPacienteForm.controls["tel_princ"].setValue(this.actualEditPaciente.tel_principal);
-    this.newPacienteForm.controls["tel_sec"].setValue(this.actualEditPaciente.tel_secundario);
-
-  }
-
-
   setClose() {
     this.onClose.emit(false);
   }
@@ -147,8 +108,7 @@ export class PacientsEditModal implements OnInit {
 
   onSubmit() {
     const fecha_nac =
-      this.meses.indexOf(this.newPacienteForm.value['mes_nac']) +
-      1 +
+      (this.meses.indexOf(this.newPacienteForm.value['mes_nac']) + 1) +
       '/' +
       this.newPacienteForm.value['dia_nac'] +
       '/' +
@@ -171,7 +131,7 @@ export class PacientsEditModal implements OnInit {
       this.newPacienteForm.value['codigoPostal'];
 
     var newPacienteData: Paciente = {
-      id_paciente: this.actualEditPaciente.id_paciente,
+      id_paciente: 0,
       nombres: this.newPacienteForm.value['nombres'],
       apellidos: this.newPacienteForm.value['apellidos'],
       fecha_nac: fecha_nac_date,
@@ -183,6 +143,6 @@ export class PacientsEditModal implements OnInit {
       fecha_reg: new Date(),
     };
 
-    this.pacienteService.updatePaciente(newPacienteData);
+    this.pacienteService.addPaciente(newPacienteData);
   }
 }

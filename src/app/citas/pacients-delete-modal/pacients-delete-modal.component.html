@@ -1,0 +1,36 @@
+<div class="delete-modal-background">
+  <div class="delete-modal-container">
+    <div class="modal-header">
+      <div class="modal-header__title">Eliminar paciente</div>
+    </div>
+
+    <div class="delete-modal-content">
+        <div class="delete-modal-content-area">
+            <div class="delete-modal-msg">
+                ¿Esta seguro de que quiere eliminar este paciente?
+            </div>
+        </div>
+        <div class="delete-modal-content-area" id="button-area">
+            <div class="delete-modal-button">
+                <button
+                type="submit"
+                mat-raised-button
+                (click)="setCancel()"
+              >
+                Cancelar
+              </button>
+
+              <button
+              class="delete-modal-button"
+                type="submit"
+                color="warn"
+                mat-raised-button
+                (click)="setDelete(id_paciente)"
+              >
+                Eliminar
+              </button>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

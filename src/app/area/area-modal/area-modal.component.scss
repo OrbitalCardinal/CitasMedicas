@@ -1,0 +1,130 @@
+.modal-background {
+    transition: 1s ease-in;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #7676763f;
+}
+
+.modal-container {
+    position: relative;
+    background-color: white;
+    padding: 2em;
+    width: 50%;
+    border-radius: 0.5em;
+}
+
+// header
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5em 0 0.5em 0;
+    border-bottom: 2px solid #7676763f;
+
+    button {
+        i {
+            font-size: 20px;
+        color: #767676;
+        }
+    }
+}
+
+.modal-header__title {
+    font-size: 30px;
+    color: #767676;
+}
+
+// Content
+.modal-content__area-title {
+    font-size: 25px;
+    color: #767676;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content__input__label {
+    font-size: 20px;
+    color: #767676;
+    font-weight: 600;
+}
+
+.modal-content__input {
+    width: 100%
+}
+
+.modal-content__area {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+    width: 100%;
+    padding: 1em 0em 1em 0em;
+}
+
+
+// Custom input widths
+.add-area-grid {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 0.5fr;
+    width: 100%;
+    gap: 2em;
+    ::ng-deep mat-form-field {
+        width: 100%;
+        background-color: #7676760C;
+    }
+
+    button {
+        font-size: 20px;
+    }
+}
+
+input {
+    font-size: 20px;
+}
+
+$reducer: 1;
+.area-table {
+    width: 100%;
+    height: 300px;
+    overflow-y: scroll;
+    table {
+        font-family: 'Assistant', sans-serif;
+        width: 100%;
+
+        ::ng-deep thead {
+            background-color: #f6f6f6;
+        }
+
+        ::ng-deep .mat-row:nth-child(even) {
+            background-color: #179c8c19;
+        }
+
+        ::ng-deep .mat-cell {
+            border-bottom-style: none;
+            text-align: center;
+            color: #767676;
+            font-weight: 600;
+            font-size: 16px * $reducer;
+          }
+    
+          ::ng-deep .mat-header-cell {
+            border-bottom-style: none;
+            text-align: center;
+            color: #767676;
+            font-weight: 600;
+            font-size: 16px * $reducer;
+            z-index: 0 !important;
+          }
+    }
+}

@@ -1,0 +1,56 @@
+<div class="modal-background">
+    <!-- <form class="modal-container" [formGroup]="newPacienteForm" (ngSubmit)="onSubmit()"></form> -->
+    <!-- <form class="modal-container" [formGroup]="newPacienteForm"></form> -->
+    <form class="modal-container">
+      <div class="modal-header">
+        <div class="modal-header__title">Áreas de especialización</div>
+        <button type="button" mat-icon-button (click)="setClose()">
+          <i class="fas fa-window-close"></i>
+        </button>
+      </div>
+      <div class="modal-content">
+        <div class="modal-content__area">
+          <div class="modal-content__input">
+            <div class="modal-content__input__label">Nombre del área:</div>
+            <div class="add-area-grid">
+              <div class="modal-content__input__textfield">
+                <mat-form-field appearance="outline">
+                  <input matInput type="text" [formControl]="areaControl">
+                </mat-form-field>
+              </div>
+              <button type="button" (click)="onSubmit()" [disabled]="!areaControl.valid" mat-raised-button color="primary" style="color: white">Agregar área</button>
+            </div>
+            
+          </div>
+        </div>
+
+        <div class="modal-content__area">
+          <div class="area-table">
+            <table mat-table [dataSource]="areas">
+                <!-- ID Column -->
+                <ng-container matColumnDef="ID">
+                  <th mat-header-cell *matHeaderCellDef> <b>ID</b> </th>
+                  <td mat-cell *matCellDef="let area"> {{area.id_area}} </td>
+                </ng-container>
+            
+                <!-- Nombre Column -->
+                <ng-container matColumnDef="Nombre">
+                  <th mat-header-cell *matHeaderCellDef> Nombre del área</th>
+                  <td mat-cell *matCellDef="let area"> {{area.nombre}} </td>
+                </ng-container>
+            
+                <!-- Fecha nac. Column -->
+                <ng-container matColumnDef="Fecha_reg">
+                  <th mat-header-cell *matHeaderCellDef> Fecha_reg</th>
+                  <td mat-cell *matCellDef="let area"> {{area.fecha_reg}} </td>
+                </ng-container>      
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+        </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+  
